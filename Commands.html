@@ -1,0 +1,650 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>Commands</title>
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <style>
+        html, body { height: 100%; margin: 0; }
+        body {
+            font-family: Arial, sans-serif;
+            font-size: 30px;            /* global font size requested */
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-start; /* align to top */
+            align-items: stretch;        /* allow children to stretch full width */
+            padding: 0;                  /* let content occupy full viewport */
+            box-sizing: border-box;
+            text-align: center;          /* center text like the heading */
+        }
+    /* Table should fill available width; wrapper will control height/scrolling */
+    table { border-collapse: collapse; width: 100%; max-width: none; }
+    .table-wrapper { flex: 1 1 auto; width: 100%; overflow: auto; }
+    th, td { border: 1px solid #ccc; padding: 8px 12px; text-align: center; }
+    thead { background: #f4f4f4; }
+    /* Search box styles */
+    .search-container { width: 100%; max-width: none; margin: 12px 0; }
+    .search-input { width: 100%; padding: 8px 12px; font-size: 30px; box-sizing: border-box; }
+    .no-results { background: #fff6f6; }
+    /* Sortable header styles */
+    th { cursor: pointer; user-select: none; }
+    th.sort-asc::after { content: " ▲"; }
+    th.sort-desc::after { content: " ▼"; }
+    </style>
+</head>
+<body>
+    <h1>Commands</h1>
+    <div class="search-container">
+        <input id="table-search" class="search-input" type="search" placeholder="Search commands, level, description..." aria-label="Search table">
+    </div>
+    <div class="table-wrapper">
+    <table>
+        <thead>
+            <tr>
+                <th>Command Name</th>
+                <th>User Level</th>
+                <th>Description</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>Abandon pawn
+                <br>Usage: !leave</br>
+                </td>
+                <td>Anyone</td>
+                <td>Makes your pawn leave the colony.</td>
+            </tr>
+            <tr>
+                <td>Fix viewer pawn
+                <br>Usage: !leave</br>
+                </td>
+                <td>Anyone</td>
+                <td></td>
+            </tr>
+            <tr>
+                <td>Heal any pawn
+                <br>Usage: !healanypawn</br>
+                </td>
+                <td>Anyone</td>
+                <td>This is a shortcut for !buy healanypawn</td>
+            </tr>
+            <tr>
+                <td>Revive any pawn
+                <br>Usage: !reviveanypawn</br>
+                </td>
+                <td>Anyone</td>
+                <td>This is a shortcut for !buy reviveanypawn</td>
+            </tr>
+            <tr>
+                <td>Viewer body
+                <br>Usage: !mypawnbody</br>
+                </td>
+                <td>Anyone</td>
+                <td></td>
+            </tr>
+            <tr>
+                <td>Viewer gear
+                <br>Usage: !mypawngear</br>
+                </td>
+                <td>Anyone</td>
+                <td>Shows an overview of your pawn's gear.</td>
+            </tr>
+             <tr>
+                <td>Viewer health
+                <br>Usage: !mypawnhealth [capacity]</br>
+                </td>
+                <td>Anyone</td>
+                <td>Shows an overview of your pawn's health. If a capacity is specified, it'll show what's affecting it.</td>
+            </tr>
+             <tr>
+                <td>Viewer kill count
+                <br>Usage: !mypawnkills</br>
+                </td>
+                <td>Anyone</td>
+                <td>Show your pawn's kill count.</td>
+            </tr>
+             <tr>
+                <td>Viewer needs
+                <br>Usage: !mypawnneeds</br>
+                </td>
+                <td>Anyone</td>
+                <td>Shows your pawn's needs.</td>
+            </tr>
+             <tr>
+                <td>Viewer relations
+                <br>Usage: !mypawnrelations [viewer]</br>
+                </td>
+                <td>Anyone</td>
+                <td>Shows your pawn's relationships to other viewers.</td>
+            </tr>
+             <tr>
+                <td>Viewer skills
+                <br>Usage: !mypawnskills</br>
+                </td>
+                <td>Anyone</td>
+                <td>Shows your pawn's skills.</td>
+            </tr>
+             <tr>
+                <td>Viewer stats
+                <br>Usage: !mypawnstats [stat1] [stat2]</br>
+                </td>
+                <td>Anyone</td>
+                <td>Shows your current stats within a given category.</td>
+            </tr>
+             <tr>
+                <td>Viewer story
+                <br>Usage: !mypawnstory</br>
+                </td>
+                <td>Anyone</td>
+                <td>Shows your pawn's backstory.</td>
+            </tr>
+             <tr>
+                <td>Viewer work
+                <br>Usage: !mypawnwork [worktype=priority] [...]</br>
+                </td>
+                <td>Anyone</td>
+                <td>Shows your pawn's work priorities.</td>
+            </tr>
+             <tr>
+                <td>Fix all pawns
+                <br>Usage: !fixallpawns</br>
+                </td>
+                <td>Moderator</td>
+                <td></td>
+            </tr>
+             <tr>
+                
+            <tr>
+                <td>Add passion                <!--Command name-->
+                <br>Usage: !passion</br>           <!--Command-->
+                </td>
+                <td>Anyone</td>           <!--user level-->
+                <td>Upgrades a skill's passion... sometimes.              <!--Description-->      
+                <br>This is a shortcut for !buy passion.</br>
+            </td>
+            </tr>
+             <tr>
+                <td>Add trait                <!--Command name-->
+                <br>Usage: !trait</br>           <!--Command-->
+                </td>
+                <td>Anyone</td>           <!--user level-->
+                <td>This is a shortcut for !buy trait.</td>           <!--Description-->      
+            </tr>
+           <tr>
+                <td>Against info                <!--Command name-->
+                <br>Usage: !modinfo</br>           <!--Command-->
+                </td>
+                <td>Anyone</td>           <!--user level-->
+                <td></td>           <!--Description-->      
+            </tr>
+            <tr>
+                <td>All commands                <!--Command name-->
+                <br>Usage: !allcommands</br>           <!--Command-->
+                </td>
+                <td>Anyone</td>           <!--user level-->
+                <td>List all commands</td>           <!--Description-->      
+            </tr>
+            <tr>
+                <td>Backpack                <!--Command name-->
+                <br>Usage: !backpack [quantity]</br>           <!--Command-->
+                </td>
+                <td>Anyone</td>           <!--user level-->
+                <td>It's like buy item, but it gets added to your inventory if possible.
+                    <br>This is a shortcut for !buy backpack [quantity]</br></td>           <!--Description-->      
+            </tr>
+            <tr>
+                <td>Buy                <!--Command name-->
+                <br>Usage: !buy</br>           <!--Command-->
+                </td>
+                <td>Anyone</td>           <!--user level-->
+                <td>Buy items</td>           <!--Description-->      
+            </tr>
+            <tr>
+                <td>Chat                <!--Command name-->
+                <br>Usage: !chat [target]</br>           <!--Command-->
+                </td>
+                <td>Anyone</td>           <!--user level-->
+                <td>Makes your pawn chat with a random pawn. If a viewer is specified, you'll chat with their pawn instead.</td>           <!--Description-->      
+            </tr>
+            <tr>
+                <td>Check balance                <!--Command name-->
+                <br>Usage: !bal</br>           <!--Command-->
+                </td>
+                <td>Anyone</td>           <!--user level-->
+                <td>Shows your current balance, karma, and optionally, the amount of coins earned per cycle.</td>           <!--Description-->      
+            </tr>
+            <tr>
+                <td>Check user                <!--Command name-->
+                <br>Usage: !checkuser</br>           <!--Command-->
+                </td>
+                <td>Moderator</td>           <!--user level-->
+                <td>Shows the balance of a given user.</td>           <!--Description-->      
+            </tr>
+            <tr>
+                <td>Colonist count                <!--Command name-->
+                <br>Usage: !colonists</br>           <!--Command-->
+                </td>
+                <td>Anyone</td>           <!--user level-->
+                <td>Show number of colonists inthe colony.</td>           <!--Description-->      
+            </tr>
+            <tr>
+                <td>Colony wealth                <!--Command name-->
+                <br>Usage: !wealth</br>           <!--Command-->
+                </td>
+                <td>Anyone</td>           <!--user level-->
+                <td>Show the wealth of the colony.</td>           <!--Description-->      
+            </tr>
+            <tr>
+                <td>Database                <!--Command name-->
+                <br>Usage: !rwdata [weaponname]</br>           <!--Command-->
+                </td>
+                <td>Anyone</td>           <!--user level-->
+                <td>	Provides some information about supported things. 
+                        <br>Supported categories are: 'weapons'</br></td>           <!--Description-->      
+            </tr>
+            <tr>
+                <td>Deep chat                <!--Command name-->
+                <br>Usage: !deepchat [target]</br>           <!--Command-->
+                </td>
+                <td>Anyone</td>           <!--user level-->
+                <td>	Makes your pawn have a deep chat a random pawn. 
+                        <br>If a viewer is specified, you'll have a deep chat with their pawn instead.</br></td>           <!--Description-->      
+            </tr>
+            <tr>
+                <td>Divorce                <!--Command name-->
+                <br>Usage: !divorce</br>           <!--Command-->
+                </td>
+                <td>Anyone</td>           <!--user level-->
+                <td>Make your pawn divorce their current partner.</td>           <!--Description-->      
+            </tr>
+            <tr>
+                <td>Dye apparel                <!--Command name-->
+                <br>Usage: !dye</br>           <!--Command-->
+                </td>
+                <td>Anyone</td>           <!--user level-->
+                <td>Change the color of your current outfit.</td>           <!--Description-->      
+            </tr>
+            <tr>
+                <td>Factions                <!--Command name-->
+                <br>Usage: !factions</br>           <!--Command-->
+                </td>
+                <td>Anyone</td>           <!--user level-->
+                <td>Show a list of factions in the world.</td>           <!--Description-->      
+            </tr>
+            <tr>
+                <td>Flirt                <!--Command name-->
+                <br>Usage: !flirt [target]</br>           <!--Command-->
+                </td>
+                <td>Anyone</td>           <!--user level-->
+                <td>Makes your pawn flirt with a random pawn. 
+                    <br>If a viewer is specified, you'll flirt with their pawn instead.</br></td>           <!--Description-->      
+            </tr>
+            <tr>
+                <td>Full heal                <!--Command name-->
+                <br>Usage: !fullheal</br>           <!--Command-->
+                </td>
+                <td>Anyone</td>           <!--user level-->
+                <td>This is a shortcut for !buy fullheal</td>           <!--Description-->      
+            </tr>
+            <tr>
+                <td>Gift coins                <!--Command name-->
+                <br>Usage: !giftcoins</br>           <!--Command-->
+                </td>
+                <td>Anyone</td>           <!--user level-->
+                <td>Gives a viewer some of your coins.</td>           <!--Description-->      
+            </tr>
+           <tr>
+                <td>Give all coins                <!--Command name-->
+                <br>Usage: !giveallcoins</br>           <!--Command-->
+                </td>
+                <td>Moderator</td>           <!--user level-->
+                <td>Gives everyonecoins.</td>           <!--Description-->      
+            </tr>
+            <tr>
+                <td>Give coins                <!--Command name-->
+                <br>Usage: !givecoins</br>           <!--Command-->
+                </td>
+                <td>Moderator</td>           <!--user level-->
+                <td>Gives a viewer coins.</td>           <!--Description-->      
+            </tr>
+            <tr>
+                <td>Heal me                <!--Command name-->
+                <br>Usage: !healme</br>           <!--Command-->
+                </td>
+                <td>Anyone</td>           <!--user level-->
+                <td>This is a shortcut for !buy healme</td>           <!--Description-->      
+            </tr>
+            <tr>
+                <td>Healall                <!--Command name-->
+                <br>Usage: !healall</br>           <!--Command-->
+                </td>
+                <td>Anyone</td>           <!--user level-->
+                <td>This is a shortcut for !buy healall</td>           <!--Description-->      
+            </tr>
+            <tr>
+                <td>Installed mods                <!--Command name-->
+                <br>Usage: !installedmods</br>           <!--Command-->
+                </td>
+                <td>Anyone</td>           <!--user level-->
+                <td>Shows you the complete list of installed mods.</td>           <!--Description-->      
+            </tr>
+            <tr>
+                <td>Instructions                <!--Command name-->
+                <br>Usage: !instructions</br>           <!--Command-->
+                </td>
+                <td>Anyone</td>           <!--user level-->
+                <td>Get instructions on how to use the toolkit.</td>           <!--Description-->      
+            </tr>
+            <tr>
+                <td>Insult                <!--Command name-->
+                <br>Usage: !insult [target]</br>           <!--Command-->
+                </td>
+                <td>Anyone</td>           <!--user level-->
+                <td>Makes your pawn insult a random pawn. 
+                    <br>If a viewer is specified, you'll insult them instead.</br></td>           <!--Description-->      
+            </tr>
+            <tr>
+                <td>Join queue                <!--Command name-->
+                <br>Usage: !joinqueue</br>           <!--Command-->
+                </td>
+                <td>Anyone</td>           <!--user level-->
+                <td>Join the pawn in game queue.</td>           <!--Description-->      
+            </tr>
+            <tr>
+                <td>Karma explanation                <!--Command name-->
+                <br>Usage: !whatiskarma</br>           <!--Command-->
+                </td>
+                <td>Anyone</td>           <!--user level-->
+                <td>Get information on the karma system.</td>           <!--Description-->      
+            </tr>
+            <tr>
+                <td>Karma round                <!--Command name-->
+                <br>Usage: !karmaround</br>           <!--Command-->
+                </td>
+                <td>Moderator</td>           <!--user level-->
+                <td>Awards all active viewers coins.</td>           <!--Description-->      
+            </tr>
+            <tr>
+                <td>Level skill                <!--Command name-->
+                <br>Usage: !levelskill</br>           <!--Command-->
+                </td>
+                <td>Anyone</td>           <!--user level-->
+                <td>Lets you wager coins to level up a skill of your choosing.
+                    <br>This is a shortcut for !buy levelskill</br></td>           <!--Description-->      
+            </tr>
+            <tr>
+                <td>Lookup                <!--Command name-->
+                <br>Usage: !lookup [query]</br>           <!--Command-->
+                </td>
+                <td>Anyone</td>           <!--user level-->
+                <td>Shows the first few results for the query in the given category. 
+                    <br>Valid categories are: 'pawns', 'traits', 'items', 'events', 'diseases', 'animals', and 'skills'.</br></td>           <!--Description-->      
+            </tr>
+            <tr>
+                <td>Marriage                <!--Command name-->
+                <br>Usage: !marry</br>           <!--Command-->
+                </td>
+                <td>Anyone</td>           <!--user level-->
+                <td>Marry a random pawn or if specified, other viewer.</td>           <!--Description-->      
+            </tr>
+            <tr>
+                <td>Mod settings                <!--Command name-->
+                <br>Usage: !modsettings</br>           <!--Command-->
+                </td>
+                <td>Anyone</td>           <!--user level-->
+                <td></td>           <!--Description-->      
+            </tr>
+              <tr>
+                <td>Passion shuffle                <!--Command name-->
+                <br>Usage: !passionshuffle [skill]</br>           <!--Command-->
+                </td>
+                <td>Anyone</td>           <!--user level-->
+                <td>	Shuffles your passions. If a skill is specified, you'll be guaranteed a minor passion in it.
+                    <br>This is a shortcut for !buy passionshuffle [skill]</br></td>           <!--Description-->      
+            </tr>
+            <tr>
+                <td>Price check                <!--Command name-->
+                <br>Usage: !price [query]</br>           <!--Command-->
+                </td>
+                <td>Anyone</td>           <!--user level-->
+                <td>Similar to the lookup command, except it'll show the price for the first valid match.</td>           <!--Description-->      
+            </tr>
+            <tr>
+                <td>Purchase list                <!--Command name-->
+                <br>Usage: !purchaselist</br>           <!--Command-->
+                </td>
+                <td>Anyone</td>           <!--user level-->
+                <td></td>           <!--Description-->      
+            </tr>
+            <tr>
+                <td>Refresh viewers                <!--Command name-->
+                <br>Usage: !refreshviewers</br>           <!--Command-->
+                </td>
+                <td>Moderator</td>           <!--user level-->
+                <td>Updates the current list of active viewers.</td>           <!--Description-->      
+            </tr>
+            <tr>
+                <td>Remove passion                <!--Command name-->
+                <br>Usage: !removepassion</br>           <!--Command-->
+                </td>
+                <td>Anyone</td>           <!--user level-->
+                <td>Downgrades a skill's passion... sometimes.
+                    <br>This is a shortcut for !buy removepassion</br></td>           <!--Description-->      
+            </tr>
+            <tr>
+                <td>Remove trait                <!--Command name-->
+                <br>Usage: !removetrait</br>           <!--Command-->
+                </td>
+                <td>Anyone</td>           <!--user level-->
+                <td>This is a shortcut for !buy removetrait</td>           <!--Description-->      
+            </tr>
+            <tr>
+                <td>Replace trait                <!--Command name-->
+                <br>Usage: !replacetrait</br>           <!--Command-->
+                </td>
+                <td>Anyone</td>           <!--user level-->
+                <td>Replaces a trait with a different trait.
+                    <br>This is a shortcut for !buy replacetrait</br></td>           <!--Description-->      
+            </tr>
+            <tr>
+                <td>Rescue me                <!--Command name-->
+                <br>Usage: !rescueme</br>           <!--Command-->
+                </td>
+                <td>Anyone</td>           <!--user level-->
+                <td>This is a shortcut for !buy rescueme</td>           <!--Description-->      
+            </tr>
+            <tr>
+                <td>Research               <!--Command name-->
+                <br>Usage: !research [project/item]</br>           <!--Command-->
+                </td>
+                <td>Anyone</td>           <!--user level-->
+                <td>Shows the current research progress. 
+                    <br>If a project is specified, it'll show the progress of that instead.</br></td>           <!--Description-->      
+            </tr>
+            <tr>
+                <td>Revive all                <!--Command name-->
+                <br>Usage: !reviveall</br>           <!--Command-->
+                </td>
+                <td>Anyone</td>           <!--user level-->
+                <td>This is a shortcut for !buy reviveall</td>           <!--Description-->      
+            </tr>
+            <tr>
+                <td>Revive me                <!--Command name-->
+                <br>Usage: !reviveme</br>           <!--Command-->
+                </td>
+                <td>Anyone</td>           <!--user level-->
+                <td>This is a shortcut for !buy reviveme</td>           <!--Description-->      
+            </tr>
+            <tr>
+                <td>Set favorite color                <!--Command name-->
+                <br>Usage: !setfavoritecolor</br>           <!--Command-->
+                </td>
+                <td>Anyone</td>           <!--user level-->
+                <td>Sets the user's pawn's favorite color to the color specified.
+                    <br>The color can be a name or a hexcode.</br></td>           <!--Description-->      
+            </tr>
+            <tr>
+                <td>Set favourite colour                <!--Command name-->
+                <br>Usage: !setfavouritecolour</br>           <!--Command-->
+                </td>
+                <td>Anyone</td>           <!--user level-->
+                <td>Sets the user's pawn's favorite colour to the color specified.
+                    <br>The colour can be a name or a hexcode.</br></td>           <!--Description-->      
+            </tr>
+            <tr>
+                <td>Surgery                <!--Command name-->
+                <br>Usage: !surgery</br>           <!--Command-->
+                </td>
+                <td>Anyone</td>           <!--user level-->
+                <td>Purchases the part specified and queues it for surgery on your pawn.
+                    <br>This is a shortcut for !buy surgery</br></td>           <!--Description-->      
+            </tr>
+            <tr>
+                <td>Unstick me                <!--Command name-->
+                <br>Usage: !imstuck</br>           <!--Command-->
+                </td>
+                <td>Anyone</td>           <!--user level-->
+                <td></td>           <!--Description-->      
+            </tr>
+            <tr>
+                <td>Set karma                <!--Command name-->
+                <br>Usage: !setkarma</br>           <!--Command-->
+                </td>
+                <td>Moderator</td>           <!--user level-->
+                <td>Sets the current karma for a given user.</td>           <!--Description-->      
+            </tr>
+             <tr>
+                <td>Toggle coins                <!--Command name-->
+                <br>Usage: !togglecoins</br>           <!--Command-->
+                </td>
+                <td>Moderator</td>           <!--user level-->
+                <td>Toggles coin generation.</td>           <!--Description-->      
+            </tr>
+             <tr>
+                <td>Toggle store                <!--Command name-->
+                <br>Usage: !togglestore</br>           <!--Command-->
+                </td>
+                <td>Moderator</td>           <!--user level-->
+                <td>Toggles the purchasing of things</td>           <!--Description-->      
+            </tr>
+             <tr>
+                <td>Unstick               <!--Command name-->
+                <br>Usage: !unstick</br>           <!--Command-->
+                </td>
+                <td>Moderator</td>           <!--user level-->
+                <td></td>           <!--Description-->      
+            </tr>
+             <tr>
+                <td>hello              <!--Command name-->
+                <br>Usage: !hello</br>           <!--Command-->
+                </td>
+                <td>Moderator</td>           <!--user level-->
+                <td></td>           <!--Description-->      
+            </tr>
+        </tbody>
+    </table>
+    </div>
+</body>
+<script>
+(function(){
+    const input = document.getElementById('table-search');
+    function normalize(s){ return (s||'').toLowerCase(); }
+
+    // Search/filter functionality
+    function handleSearch(){
+        const q = normalize(input ? input.value : '').trim();
+        const tables = document.querySelectorAll('table');
+        tables.forEach(table => {
+            const tbody = table.tBodies[0];
+            if(!tbody) return;
+            let anyVisible = false;
+            Array.from(tbody.rows).forEach(row => {
+                if(row.classList && row.classList.contains('no-results')) return;
+                if(!q){
+                    row.style.display = '';
+                    anyVisible = true;
+                    return;
+                }
+                const rowText = Array.from(row.cells).map(c => (c.textContent||'')).join(' ').toLowerCase();
+                const match = rowText.indexOf(q) !== -1;
+                row.style.display = match ? '' : 'none';
+                if(match) anyVisible = true;
+            });
+            if(!anyVisible){
+                if(!table._noResultRow){
+                    const r = tbody.insertRow();
+                    r.className = 'no-results';
+                    const td = r.insertCell();
+                    td.colSpan = table.querySelectorAll('th').length || 1;
+                    td.textContent = 'No matching results';
+                    td.style.textAlign = 'center';
+                    table._noResultRow = r;
+                }
+            } else {
+                if(table._noResultRow){
+                    table._noResultRow.remove();
+                    table._noResultRow = null;
+                }
+            }
+        });
+    }
+
+    if(input){
+        input.addEventListener('input', handleSearch);
+    }
+
+    // Sorting functionality
+    function sortTable(table, colIndex, direction){
+        const tbody = table.tBodies[0];
+        if(!tbody) return;
+        // remove any no-results row before sorting; search will re-add if needed
+        if(table._noResultRow){
+            table._noResultRow.remove();
+            table._noResultRow = null;
+        }
+        const rows = Array.from(tbody.querySelectorAll('tr')).filter(r => r.cells.length > 0);
+        rows.sort((a,b) => {
+            const aText = (a.cells[colIndex] && a.cells[colIndex].textContent || '').trim().toLowerCase();
+            const bText = (b.cells[colIndex] && b.cells[colIndex].textContent || '').trim().toLowerCase();
+            return direction === 'asc'
+                ? aText.localeCompare(bText, undefined, {numeric:true, sensitivity:'base'})
+                : bText.localeCompare(aText, undefined, {numeric:true, sensitivity:'base'});
+        });
+        rows.forEach(r => tbody.appendChild(r));
+        // reapply filtering in case a search is active
+        if(input && input.value.trim()) handleSearch();
+    }
+
+    // Attach click handlers to headers to toggle asc/desc
+    document.querySelectorAll('table').forEach(table => {
+        const thead = table.tHead;
+        const headerCells = thead ? Array.from(thead.rows[0].cells) : Array.from(table.querySelectorAll('th'));
+        headerCells.forEach((th, idx) => {
+            th.addEventListener('click', function(){
+                const wasAsc = th.classList.contains('sort-asc');
+                // clear other header indicators in this row
+                headerCells.forEach(h => h.classList.remove('sort-asc','sort-desc'));
+                const newDir = wasAsc ? 'desc' : 'asc';
+                th.classList.add(newDir === 'asc' ? 'sort-asc' : 'sort-desc');
+                sortTable(table, idx, newDir);
+            });
+        });
+    });
+
+    // initial pass
+    // Apply default sort: alphabetical ascending on column 1 (index 0)
+    document.querySelectorAll('table').forEach(table => {
+        const headerCells = table.tHead ? Array.from(table.tHead.rows[0].cells) : Array.from(table.querySelectorAll('th'));
+        if(headerCells && headerCells[0]){
+            // clear existing indicators then set first column as asc
+            headerCells.forEach(h => h.classList.remove('sort-asc','sort-desc'));
+            headerCells[0].classList.add('sort-asc');
+            // sort the table by first column ascending
+            sortTable(table, 0, 'asc');
+        }
+    });
+    // reapply search filter if the input already contains text
+    if(input && input.value.trim()) handleSearch();
+})();
+</script>
+</html>
