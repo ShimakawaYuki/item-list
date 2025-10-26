@@ -8,7 +8,7 @@
         html, body { height: 100%; margin: 0; }
         body {
             font-family: Arial, sans-serif;
-            font-size: 25px;            /* global font size requested */
+            font-size: 30px;            /* global font size requested */
             display: flex;
             flex-direction: column;
             justify-content: flex-start; /* align to top */
@@ -30,31 +30,22 @@
     th { cursor: pointer; user-select: none; }
     th.sort-asc::after { content: " ▲"; }
     th.sort-desc::after { content: " ▼"; }
+    /* Back button */
+    .back-button {
+        display: inline-block;
+        margin: 12px;
+        padding: 8px 14px;
+        font-size: 30px;
+        background: #f0f0f0;
+        border: 1px solid #ccc;
+        border-radius: 6px;
+        cursor: pointer;
+    }
+    .back-button:active { transform: translateY(1px); }
     </style>
 </head>
 <body>
-    <nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark">
-        <a class="navbar-brand" href="#">Shimakawa Yuki</a>
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExampleDefault" aria-controls="navbarsExampleDefault" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-        </button>
-        <div class="collapse navbar-collapse" id="navbarsExampleDefault">
-            <ul class="navbar-nav mr-auto">
-                <li class="nav-item active">
-                    <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="https://www.twitch.tv/ShimakawaYuki">My Stream</a>
-                </li>
-				<li class="nav-item">
-                    <a class="nav-link" href="Modlist.html">Modlist</a>
-                </li>
-				<li class="nav-item">
-                    <a class="nav-link" href="Commands.html">Commands</a>
-                </li>
-            </ul>
-        </div>
-    </nav>
+    <button id="back-button" class="back-button" aria-label="Go back to previous page">← Back</button>
     <h1>Commands</h1>
     <div class="search-container">
         <input id="table-search" class="search-input" type="search" placeholder="Search commands, level, description..." aria-label="Search table">
@@ -667,8 +658,26 @@
     });
     // reapply search filter if the input already contains text
     if(input && input.value.trim()) handleSearch();
+
+    // Back button behavior: prefer document.referrer, fallback to history.back()
+    const backBtn = document.getElementById('back-button');
+    if(backBtn){
+        backBtn.addEventListener('click', function(){
+            try{
+                if(document.referrer){
+                    // navigate to referring page when available
+                    window.location.href = document.referrer;
+                } else if(history.length > 1){
+                    history.back();
+                } else {
+                    // no referrer/history: do nothing or optionally close window
+                    console.warn('No previous page to go back to');
+                }
+            }catch(e){
+                console.error('Failed to navigate back', e);
+            }
+        });
+    }
 })();
 </script>
-
 </html>
-
