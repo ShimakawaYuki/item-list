@@ -1155,8 +1155,61 @@ Better Architect Menu | Tweaks [koberiddle.betterarchitectmenu.tweaks][https://s
 
 	</div>
 <script>
-	// Setup mod-list behaviors: open links in new tab, search filter, and back button
+	// Setup mod-list behaviors: convert text lines to anchors, open links in new tab, search filter, and back button
 	(function(){
+		// Convert plain-text lines like "Name [id][url]" into anchor elements
+		(function convertTextLinesToAnchors(){
+			var container = document.querySelector('.mod-list');
+			if(!container) return;
+			var childNodes = Array.from(container.childNodes);
+			childNodes.forEach(function(node){
+				if(node.nodeType !== Node.TEXT_NODE) return;
+				var lines = node.textContent.split(/\r?\n/);
+				var frag = document.createDocumentFragment();
+				lines.forEach(function(raw){
+					var line = raw.trim();
+					if(!line) return;
+					var m = line.match(/^([\s\S]*)\s*\[([^\]]+)\]\s*\[([^\]]+)\]\s*$/);
+					if(m){
+						var name = m[1].trim() + ' [' + m[2] + ']';
+						var urlRaw = m[3].trim();
+						var url = urlRaw;
+						if(!/^[a-zA-Z][a-zA-Z0-9+.-]*:/.test(urlRaw)){
+							if(urlRaw.indexOf('.') !== -1) url = 'https://' + urlRaw;
+						}
+						var a = document.createElement('a');
+						a.href = (/^(Link|No url specified|n\/a|-|N\/A)$/i.test(urlRaw) ? '#' : url);
+						a.textContent = name;
+						a.target = '_blank';
+						a.rel = 'noopener noreferrer';
+						frag.appendChild(a);
+					} else {
+						var m2 = line.match(/^([\s\S]*)\s*\[([^\]]+)\]\s*$/);
+						if(m2){
+							var name2 = m2[1].trim();
+							var urlRaw2 = m2[2].trim();
+							var url2 = urlRaw2;
+							if(!/^[a-zA-Z][a-zA-Z0-9+.-]*:/.test(urlRaw2)){
+								if(urlRaw2.indexOf('.') !== -1) url2 = 'https://' + urlRaw2;
+							}
+							var a2 = document.createElement('a');
+							a2.href = (/^(Link|No url specified|n\/a|-|N\/A)$/i.test(urlRaw2) ? '#' : url2);
+							a2.textContent = name2;
+							a2.target = '_blank';
+							a2.rel = 'noopener noreferrer';
+							frag.appendChild(a2);
+						} else {
+							var span = document.createElement('span');
+							span.textContent = line;
+							frag.appendChild(span);
+						}
+					}
+					frag.appendChild(document.createTextNode('\n'));
+				});
+				if(frag.childNodes.length) node.parentNode.replaceChild(frag, node);
+			});
+		})();
+
 		var links = Array.prototype.slice.call(document.querySelectorAll('.mod-list a'));
 		links.forEach(function(a){
 			a.setAttribute('target','_blank');
