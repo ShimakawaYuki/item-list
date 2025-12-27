@@ -1,1 +1,22 @@
+<style>
+	/* Show each anchor on its own line and add spacing between entries */
+	html, body { margin: 0; padding: 8px; font-family: Arial, sans-serif; }
+	.mod-list a { display: block; margin: 6px 0; padding: 6px 8px; text-decoration: none; color: inherit; border-radius: 4px; }
+	.mod-list a:hover { background: #f3f4f6; }
 
+	/* Search box and back button styles */
+	.top-controls { display: flex; gap: 12px; align-items: center; padding: 8px; }
+	.back-button { padding: 6px 10px; font-size: 14px; border-radius: 6px; border: 1px solid #ccc; background: #f0f0f0; cursor: pointer; }
+	.search-container { flex: 1 1 auto; }
+	.search-input { width: 100%; padding: 8px 10px; font-size: 14px; box-sizing: border-box; border: 1px solid #ccc; border-radius: 6px; }
+	#no-results { display: none; padding: 8px; color: #666; }
+</style>
+<div class="mod-list">
+
+<div class="top-controls">
+  <button id="back-button" class="back-button" aria-label="Go back">← Back</button>
+  <div class="search-container">
+    <input id="modlist-search" class="search-input" type="search" placeholder="Search mods" aria-label="Search mods">
+  </div>
+  <div id="no-results">No matching results</div>
+</div>
