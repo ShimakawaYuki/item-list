@@ -2,6 +2,10 @@
 <html lang="en">
 <head>
     <meta charset="utf-8">
+     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/list.js/1.5.0/list.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.3.2/angular.min.js"></script>
     <title>Commands</title>
     <style id="force-dark">
     :root { color-scheme: dark; --bg:#0b0b0f; --surface:#0f1720; --text:#e6e6e6; --muted:#9aa0a6; --accent:#4ea8ff; }
@@ -12,6 +16,24 @@
     input, .search-input, .back-button, button { background: #0e1114 !important; color: var(--text) !important; border-color: rgba(255,255,255,0.08) !important; }
     img, svg, video { filter: none !important; }
 </style>
+
+    <script type="text/javascript">
+        const itemListURL = "https://raw.githubusercontent.com/ShimakawaYuki/item-list/refs/heads/master/StoreItems.json";
+        const eventListURL = "https://raw.githubusercontent.com/ShimakawaYuki/item-list/refs/heads/master/StoreEvents.json";
+    </script>
+<style>
+	/* Show each anchor on its own line and add spacing between entries */
+	html, body { margin-top: 50px; padding: 8px; font-family: Arial, sans-serif; }
+	.mod-list a { display: block; margin: 6px 0; padding: 6px 8px; text-decoration: none; color: inherit; border-radius: 4px; }
+	.mod-list a:hover { background: #f3f4f6; }
+
+	/* Search box and back button styles */
+	.top-controls { display: flex; gap: 12px; align-items: center; padding: 8px; }
+	.search-container { flex: 1 1 auto; }
+	.search-input { width: 100%; padding: 8px 10px; font-size: 14px; box-sizing: border-box; border: 1px solid #ccc; border-radius: 6px; }
+	#no-results { display: none; padding: 8px; color: #666; }
+</style>
+
 <script>
     // Force dark mode on load
     (function(){
@@ -46,22 +68,37 @@
     th { cursor: pointer; user-select: none; }
     th.sort-asc::after { content: " ▲"; }
     th.sort-desc::after { content: " ▼"; }
-    /* Back button */
-    .back-button {
-        display: inline-block;
-        margin: 12px;
-        padding: 8px 14px;
-        font-size: 30px;
-        background: #f0f0f0;
-        border: 1px solid #ccc;
-        border-radius: 6px;
-        cursor: pointer;
-    }
-    .back-button:active { transform: translateY(1px); }
     </style>
 </head>
 <body>
-    <button id="back-button" class="back-button" aria-label="Go back">← Back</button>
+   <nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark">
+        <a class="navbar-brand" href="#">Shimakawa Yuki</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExampleDefault" aria-controls="navbarsExampleDefault" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarsExampleDefault">
+            <ul class="navbar-nav mr-auto">
+                <li class="nav-item active">
+                    <a class="nav-link" href="index.html">Home</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="https://www.twitch.tv/ShimakawaYuki">My Stream</a>
+                </li>
+				<li class="nav-item">
+                    <a class="nav-link" href="Modlist_2.html">Modlist</a>
+                </li>
+				<li class="nav-item">
+                    <a class="nav-link" href="Commands.html">Commands</a>
+                </li>
+					<li class="nav-item">
+                    <a class="nav-link" href="Rules.html">Rules</a>
+                </li>
+				<li class="nav-item">
+                    <a class="nav-link" href="https://drive.google.com/drive/folders/1-G6kkXGViXmWYWkIqVaH7B4UdtyJdkby?usp=sharing">Progress Render</a>
+                </li>
+            </ul>
+        </div>
+    </nav>
     <h1>Commands</h1>
     <div class="search-container">
         <input id="table-search" class="search-input" type="search" placeholder="Search commands, level, description..." aria-label="Search table">
@@ -675,27 +712,7 @@
     // reapply search filter if the input already contains text
     if(input && input.value.trim()) handleSearch();
 
-    // Back button behavior: prefer document.referrer, fallback to history.back()
-    const backBtn = document.getElementById('back-button');
-    if(backBtn){
-        backBtn.addEventListener('click', function(){
-            try{
-                if(document.referrer){
-                    // navigate to referring page when available
-                    window.location.href = document.referrer;
-                } else if(history.length > 1){
-                    history.back();
-                } else {
-                    // no referrer/history: do nothing or optionally close window
-                    console.warn('No previous page to go back to');
-                }
-            }catch(e){
-                console.error('Failed to navigate back', e);
-            }
-        });
-    }
 })();
 </script>
 </html>
-
 
