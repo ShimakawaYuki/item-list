@@ -17,6 +17,19 @@
     input, .search-input, .back-button, button { background: #0e1114 !important; color: var(--text) !important; border-color: rgba(255,255,255,0.08) !important; }
     img, svg, video { filter: none !important; }
     </style>
+	<style>
+	/* Show each anchor on its own line and add spacing between entries */
+	html, body { margin: 0; padding: 8px; font-family: Arial, sans-serif; }
+	.mod-list a { display: block; margin: 6px 0; padding: 6px 8px; text-decoration: none; color: inherit; border-radius: 4px; }
+	.mod-list a:hover { background: #f3f4f6; }
+
+	/* Search box and back button styles */
+	.top-controls { display: flex; gap: 12px; align-items: center; padding: 8px; }
+	.back-button { padding: 6px 10px; font-size: 14px; border-radius: 6px; border: 1px solid #ccc; background: #f0f0f0; cursor: pointer; }
+	.search-container { flex: 1 1 auto; }
+	.search-input { width: 100%; padding: 8px 10px; font-size: 14px; box-sizing: border-box; border: 1px solid #ccc; border-radius: 6px; }
+	#no-results { display: none; padding: 8px; color: #666; }
+</style>
 <script>
     // Force dark mode on load
     (function(){
